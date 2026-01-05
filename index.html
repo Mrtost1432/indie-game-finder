@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indie Game Finder</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  font-family: Arial, sans-serif;
+  color: white;
+}
+.card {
+  background: rgba(0,0,0,0.45);
+  padding: 35px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 360px;
+}
+button {
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 14px;
+  border: none;
+  background: #64dd17;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<div class="card">
+  <h1>🎮 Indie Game Finder</h1>
+  <p>Random real indie game</p>
+  <button onclick="openRandomGame()">Randomize</button>
+</div>
+
+<script>
+const games = [
+  "https://play.google.com/store/apps/details?id=com.noodlecake.altosadventure",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.altosodyssey",
+  "https://play.google.com/store/apps/details?id=com.mountains.feather",
+  "https://play.google.com/store/apps/details?id=com.devolver.downwell_rerelease",
+  "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley",
+  "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley2",
+  "https://play.google.com/store/apps/details?id=com.playdead.limbo.full",
+  "https://play.google.com/store/apps/details?id=com.and.games505.humanfallflat",
+  "https://play.google.com/store/apps/details?id=com.Mediocre.smashhit",
+  "https://play.google.com/store/apps/details?id=com.headupgames.bridgeconstructorportal",
+  "https://play.google.com/store/apps/details?id=com.RawFury.BadNorthJotunnEdition",
+  "https://play.google.com/store/apps/details?id=com.playsaurus.clickerheroes",
+  "https://play.google.com/store/apps/details?id=com.devolver.reigns",
+  "https://play.google.com/store/apps/details?id=com.devolver.reigns2",
+  "https://play.google.com/store/apps/details?id=com.toucharcade.ios.Kingdom",
+  "https://play.google.com/store/apps/details?id=com.Panic.ArtOfBalance",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.crashlands",
+  "https://play.google.com/store/apps/details?id=com.MikaMobile.Battleheart",
+  "https://play.google.com/store/apps/details?id=com.MikaMobile.BattleheartLegacy",
+  "https://play.google.com/store/apps/details?id=com.rawfury.kingdomtwocrowns",
+  "https://play.google.com/store/apps/details?id=com.mojang.minecraftpe",
+  "https://play.google.com/store/apps/details?id=com.squareenix.lis",
+  "https://play.google.com/store/apps/details?id=com.Chucklefish.StardewValley",
+  "https://play.google.com/store/apps/details?id=com.devolver.katana",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.eclipse",
+  "https://play.google.com/store/apps/details?id=com.PirateSoftware.Heartbound",
+  "https://play.google.com/store/apps/details?id=com.the10tons.neonchrome",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.ravensword2",
+  "https://play.google.com/store/apps/details?id=com.shinybox.smashymonsters",
+  "https://play.google.com/store/apps/details?id=com.alper.swordigo",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.wayward",
+  "https://play.google.com/store/apps/details?id=com.pixelbite.mutant",
+  "https://play.google.com/store/apps/details?id=com.headupgames.deadage",
+  "https://play.google.com/store/apps/details?id=com.chucklefish.starbound",
+  "https://play.google.com/store/apps/details?id=com.coldbeamgames.beatcop",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.luminocity",
+  "https://play.google.com/store/apps/details?id=com.mediocre.grandmountain",
+  "https://play.google.com/store/apps/details?id=com.tinytouchtales.cardcrawl",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.gettingoverit",
+  "https://play.google.com/store/apps/details?id=com.playdigious.deadcells.mobile",
+  "https://play.google.com/store/apps/details?id=com.devolver.myfriendpedro",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.superbrothers",
+  "https://play.google.com/store/apps/details?id=com.and.games505.terraria"
+  
+
+  "https://play.google.com/store/apps/details?id=com.noodlecake.altosadventure",
+  "https://play.google.com/store/apps/details?id=com.mountains.feather",
+  "https://play.google.com/store/apps/details?id=com.devolver.downwell_rerelease",
+  "https://play.google.com/store/apps/details?id=com.RawFury.BadNorthJotunnEdition",
+  "https://play.google.com/store/apps/details?id=com.Panic.ArtOfBalance",
+  "https://play.google.com/store/apps/details?id=com.alper.swordigo",
+  "https://play.google.com/store/apps/details?id=com.Mediocre.smashhit",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.crashlands",
+  "https://play.google.com/store/apps/details?id=com.mediocre.grandmountain",
+  "https://play.google.com/store/apps/details?id=com.the10tons.neonchrome",
+  "https://play.google.com/store/apps/details?id=com.headupgames.deadage",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.superbrothers",
+  "https://play.google.com/store/apps/details?id=com.MikaMobile.Battleheart",
+  "https://play.google.com/store/apps/details?id=com.MikaMobile.BattleheartLegacy",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.ravensword2",
+  "https://play.google.com/store/apps/details?id=com.headupgames.bridgeconstructorportal",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.gettingoverit",
+  "https://play.google.com/store/apps/details?id=com.playdigious.deadcells.mobile",
+  "https://play.google.com/store/apps/details?id=com.devolver.reigns",
+  "https://play.google.com/store/apps/details?id=com.devolver.reigns2",
+
+  "https://play.google.com/store/apps/details?id=com.gambrinous.pocketbuild",
+  "https://play.google.com/store/apps/details?id=com.ironhidegames.android.kingdomrush",
+  "https://play.google.com/store/apps/details?id=com.ironhidegames.android.kingdomrushfrontiers",
+  "https://play.google.com/store/apps/details?id=com.ironhidegames.android.kingdomrushorigins",
+  "https://play.google.com/store/apps/details?id=com.bscotch.crashlands",
+  "https://play.google.com/store/apps/details?id=com.teamlava.monsterlegends",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.eclipse",
+  "https://play.google.com/store/apps/details?id=com.heartmachine.hyperlightdrifter",
+  "https://play.google.com/store/apps/details?id=com.mrgun",
+  "https://play.google.com/store/apps/details?id=com.pixelbite.mutant",
+  "https://play.google.com/store/apps/details?id=com.coffeestainstudios.goatsimulator",
+  "https://play.google.com/store/apps/details?id=com.chucklefish.starbound",
+  "https://play.google.com/store/apps/details?id=com.tinytouchtales.cardcrawl",
+  "https://play.google.com/store/apps/details?id=com.mediocre.ridiculousfishing",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.wayward",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.morphite",
+  "https://play.google.com/store/apps/details?id=com.the10tons.teslagrad",
+  "https://play.google.com/store/apps/details?id=com.digitalsun.moonlighter",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.chameleonrun",
+
+  "https://play.google.com/store/apps/details?id=com.pixeljam.snowman",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.framerated",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.exiles",
+  "https://play.google.com/store/apps/details?id=com.headupgames.theinnerworld",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.luminocity",
+  "https://play.google.com/store/apps/details?id=com.the10tons.time_recoil",
+  "https://play.google.com/store/apps/details?id=com.mediocre.pinzgolf",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.delver",
+  "https://play.google.com/store/apps/details?id=com.headupgames.bridgeconstructor",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.kingturn",
+  "https://play.google.com/store/apps/details?id=com.mediocre.mekorama",
+  "https://play.google.com/store/apps/details?id=com.pixelbite.sg",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.oceanhorn",
+"https://play.google.com/store/apps/details?id=com.noodlecake.threesfree",
+  "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley",
+  "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley2",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.reignshermajesty",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.opusrocket",
+  "https://play.google.com/store/apps/details?id=com.headupgames.wayward",
+  "https://play.google.com/store/apps/details?id=com.rawfury.kingdom",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.arcanequest",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.sixages",
+  "https://play.google.com/store/apps/details?id=com.the10tons.neonchrome",
+
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.doomanddestiny",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.voidtyrant",
+  "https://play.google.com/store/apps/details?id=com.mediocre.smashhit",
+  "https://play.google.com/store/apps/details?id=com.mediocre.doesnotcommute",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.lostportal",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.gunhouse",
+  "https://play.google.com/store/apps/details?id=com.headupgames.darktrain",
+  "https://play.google.com/store/apps/details?id=com.the10tons.jydge",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.kingturnrp",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.minesofmars",
+
+  "https://play.google.com/store/apps/details?id=com.noodlecake.inbetween",
+  "https://play.google.com/store/apps/details?id=com.headupgames.supertype",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.sorcery1",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.sorcery2",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.sorcery3",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.sorcery4",
+  "https://play.google.com/store/apps/details?id=com.headupgames.bridgeconstructorstunts",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.dungeontracer",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.lumino",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.tiltastic",
+
+  "https://play.google.com/store/apps/details?id=com.headupgames.thealmostgone",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.fractalspace",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.wayout",
+  "https://play.google.com/store/apps/details?id=com.the10tons.level22",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.neverendingnightmares",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.roadnottaken",
+  "https://play.google.com/store/apps/details?id=com.headupgames.deponia",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.lockedquest",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.tinybangstory",
+  "https://play.google.com/store/apps/details?id=com.headupgames.silverchains",
+
+  "https://play.google.com/store/apps/details?id=com.noodlecake.bombchicken",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.dungeonlore",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.fotonica",
+  "https://play.google.com/store/apps/details?id=com.headupgames.tinylands",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.mimpi",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.severed",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.minesofmars",
+  "https://play.google.com/store/apps/details?id=com.headupgames.witchspring",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.prune",
+  "https://play.google.com/store/apps/details?id=com.crescentmoongames.exilesofembermark"
+  "https://play.google.com/store/apps/details?id=com.headupgames.toby"
+];
+
+function openRandomGame() {
+  const game = games[Math.floor(Math.random() * games.length)];
+  window.open(game, "_blank");
+}
+</script>
+];
+
+function openRandomGame() {
+  const game = games[Math.floor(Math.random() * games.length)];
+  window.open(game, "_blank");
+}
+</script>
+
+</body>
+</html>
