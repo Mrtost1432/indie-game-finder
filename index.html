@@ -64,7 +64,7 @@ const games = [
   "https://play.google.com/store/apps/details?id=com.rawfury.kingdomtwocrowns",
   "https://play.google.com/store/apps/details?id=com.Chucklefish.StardewValley",
   "https://play.google.com/store/apps/details?id=com.playdigious.deadcells.mobile",
-   "https://play.google.com/store/apps/details?id=com.noodlecake.threesfree",
+  "https://play.google.com/store/apps/details?id=com.noodlecake.threesfree",
   "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley",
   "https://play.google.com/store/apps/details?id=com.ustwo.monumentvalley2",
   "https://play.google.com/store/apps/details?id=com.noodlecake.reignshermajesty",
@@ -123,7 +123,7 @@ const games = [
 
 function openRandomGame() {
   const game = games[Math.floor(Math.random() * games.length)];
-  window.open(game, "_blank");
+  window.location.href = game; // 🔥 POPUP YOK, %100 ÇALIŞIR
 }
 </script>
 
